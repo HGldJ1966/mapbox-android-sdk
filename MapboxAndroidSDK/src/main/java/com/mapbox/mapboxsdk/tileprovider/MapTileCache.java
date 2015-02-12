@@ -210,8 +210,8 @@ public class MapTileCache implements TileLayerConstants {
         final String cachePath =
                 Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                         || (!Environment.isExternalStorageRemovable())
-                        ? Environment.getExternalStorageDirectory().getPath()
-                        : context.getFilesDir().getPath();
+                        ? context.getExternalCacheDir().getPath()
+                        : context.getCacheDir().getPath();
 
         return new File(cachePath, uniqueName);
     }
