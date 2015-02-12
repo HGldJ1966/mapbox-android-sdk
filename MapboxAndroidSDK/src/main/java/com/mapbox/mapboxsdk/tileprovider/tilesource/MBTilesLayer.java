@@ -152,8 +152,14 @@ public class MBTilesLayer extends TileLayer implements MapViewConstants, MapboxC
             InputStream inputStream;
             try {
                 inputStream = am.open(url);
-                return createFileFromInputStream(inputStream,
-                        Environment.getExternalStorageDirectory() + File.separator + url);
+                final File mbtilesDir;     
+                if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+                || (!Environment.isExternalStorageRemovable()){
+                    mbtilesDir = new File(context.getExternalFilesDir(null), url);
+                } else {
+                    mbtilesDir = new File(context.getFilesDir(), url);
+                }
+                return createFileFromInputStream(inputStream, mbtilesDir.getPath());
             } catch (IOException e) {
                 Log.e(TAG, "MBTiles file not found in assets: " + e.toString());
                 return null;
