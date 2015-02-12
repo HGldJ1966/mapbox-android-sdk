@@ -25,6 +25,7 @@ public class MapTileDownloader extends MapTileModuleLayerBase {
     private final AtomicReference<MapTileCache> mTileCache = new AtomicReference<MapTileCache>();
 
     private final NetworkAvailabilityCheck mNetworkAvailabilityCheck;
+    private boolean mUseDataConnection = true;
     private MapView mapView;
     boolean hdpi;
 
@@ -36,6 +37,7 @@ public class MapTileDownloader extends MapTileModuleLayerBase {
 
         hdpi = mapView.getContext().getResources().getDisplayMetrics().densityDpi
                 > DisplayMetrics.DENSITY_HIGH;
+        mUseDataConnection = this.mapView.useDataConnection();
 
         mNetworkAvailabilityCheck = pNetworkAvailabilityCheck;
         setTileSource(pTileSource);
@@ -64,7 +66,7 @@ public class MapTileDownloader extends MapTileModuleLayerBase {
 
     @Override
     public boolean getUsesDataConnection() {
-        return true;
+        return mUseDataConnection;
     }
 
     @Override

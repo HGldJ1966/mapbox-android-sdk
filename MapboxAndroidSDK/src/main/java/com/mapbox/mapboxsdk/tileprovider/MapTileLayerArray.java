@@ -103,7 +103,7 @@ public class MapTileLayerArray extends MapTileLayerBase {
      */
     private boolean tileUnavailable(final MapTile pTile) {
         if (mUnaccessibleTiles.size() > 0) {
-            if (networkAvailable()) {
+            if (networkAvailable() || !useDataConnection()) {
                 mUnaccessibleTiles.clear();
             } else if (mUnaccessibleTiles.contains(pTile)) {
                 return true;

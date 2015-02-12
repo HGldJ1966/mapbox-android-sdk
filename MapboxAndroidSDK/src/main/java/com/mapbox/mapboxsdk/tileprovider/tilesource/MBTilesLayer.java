@@ -154,7 +154,7 @@ public class MBTilesLayer extends TileLayer implements MapViewConstants, MapboxC
                 inputStream = am.open(url);
                 final File mbtilesDir;     
                 if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
-                || (!Environment.isExternalStorageRemovable()){
+                    || (!Environment.isExternalStorageRemovable()) {
                     mbtilesDir = new File(context.getExternalFilesDir(null), url);
                 } else {
                     mbtilesDir = new File(context.getFilesDir(), url);
