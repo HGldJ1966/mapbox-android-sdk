@@ -188,7 +188,7 @@ public class MapView extends ViewGroup implements MapViewConstants, MapEventsRec
         this.mScroller = new Scroller(aContext);
         Projection.setTileSize(tileSizePixels);
 
-        if (tileProvider == null) {
+        if (tileProvider == null && !isInEditMode()) {
             tileProvider = new MapTileLayerBasic(aContext, null, this);
         }
 
