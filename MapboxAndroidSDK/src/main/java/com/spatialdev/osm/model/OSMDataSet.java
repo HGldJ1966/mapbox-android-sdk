@@ -73,33 +73,33 @@ public class OSMDataSet {
                            String timestampStr,
                            String changesetStr,
                            String uidStr,
-                           String userStr){
+                           String userStr) {
 
-        OSMNode n = new OSMNode(  idStr, latStr, lonStr, versionStr, timestampStr,
-                            changesetStr, uidStr, userStr );
+        OSMNode n = new OSMNode(idStr, latStr, lonStr, versionStr, timestampStr,
+                            changesetStr, uidStr, userStr);
 
         nodes.put(n.getId(), n);
         return n;
     }
 
-    public OSMWay createWay( String idStr,
+    public OSMWay createWay(String idStr,
                           String versionStr,
                           String timestampStr,
                           String changesetStr,
                           String uidStr,
-                          String userStr ) {
+                          String userStr) {
 
         OSMWay w = new OSMWay(idStr, versionStr, timestampStr, changesetStr, uidStr, userStr);
         ways.put(w.getId(), w);
         return w;
     }
 
-    public OSMRelation createRelation( String idStr,
+    public OSMRelation createRelation(String idStr,
                                     String versionStr,
                                     String timestampStr,
                                     String changesetStr,
                                     String uidStr,
-                                    String userStr ) {
+                                    String userStr) {
 
         OSMRelation r = new OSMRelation(idStr, versionStr, timestampStr, changesetStr, uidStr, userStr);
         relations.put(r.getId(), r);
@@ -124,7 +124,7 @@ public class OSMDataSet {
              * If a way has the same starting node as ending node,
              * it is a closed way.
              */
-            if ( w.isClosed() ) {
+            if (w.isClosed()) {
                 closedWays.add(w);
             } else {
                 openWays.add(w);
@@ -137,7 +137,7 @@ public class OSMDataSet {
              * If a node is not in a way,
              * put that node in standaloneNodes.
              */
-            if ( ! wayNodeIds.contains(key) ) {
+            if (!wayNodeIds.contains(key)) {
                 OSMNode n = nodes.get(key);
                 standaloneNodes.add(n);
             }

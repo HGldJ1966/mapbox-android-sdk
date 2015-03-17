@@ -92,20 +92,15 @@ public class OSMXmlParser {
 
             if (name.equals("note")) {
                 readNote();
-            }
-            else if (name.equals("meta")) {
+            } else if (name.equals("meta")) {
                 readMeta();
-            }
-            else if (name.equals("node")) {
+            } else if (name.equals("node")) {
                 readNode();
-            }
-            else if (name.equals("way")) {
+            } else if (name.equals("way")) {
                 readWay();
-            }
-            else if (name.equals("relation")) {
+            } else if (name.equals("relation")) {
                 readRelation();
-            }
-            else {
+            } else {
                 skip();
             }
 
@@ -121,7 +116,8 @@ public class OSMXmlParser {
      * an element(s) have been read.
      * * * *
      */
-    protected void notifyProgress() {}
+    protected void notifyProgress() {
+    }
 
 
     private void readNote() throws XmlPullParserException, IOException {
@@ -146,8 +142,7 @@ public class OSMXmlParser {
         String uidStr       = parser.getAttributeValue(ns, "uid");
         String userStr      = parser.getAttributeValue(ns, "user");
 
-        OSMNode node = ds.createNode(  idStr, latStr, lonStr, versionStr, timestampStr,
-                                    changesetStr, uidStr, userStr   );
+        OSMNode node = ds.createNode(idStr, latStr, lonStr, versionStr, timestampStr, changesetStr, uidStr, userStr);
 
         // If the next thing is not an END_TAG, we have some tag elements in the node...
         if (parser.nextTag() != XmlPullParser.END_TAG && parser.getName().equals("tag")) {
@@ -208,12 +203,12 @@ public class OSMXmlParser {
         // function as start and end tags
         parser.nextTag();
         parser.nextTag();
-        if (parser.getName().equals("tag")){
+        if (parser.getName().equals("tag")) {
             readTags(el);
         } else if (parser.getName().equals("nd")) {
-            readNds((OSMWay)el);
+            readNds((OSMWay) el);
         } else if (parser.getName().equals("member")) {
-            readMembers((OSMRelation)el);
+            readMembers((OSMRelation) el);
         }
         ++tagReadCount;
     }
@@ -226,7 +221,7 @@ public class OSMXmlParser {
         // function as start and end tags
         parser.nextTag();
         parser.nextTag();
-        if (parser.getName().equals("tag")){
+        if (parser.getName().equals("tag")) {
             readTags(way);
         } else if (parser.getName().equals("nd")) {
             readNds(way);
@@ -251,7 +246,7 @@ public class OSMXmlParser {
         // function as start and end tags
         parser.nextTag();
         parser.nextTag();
-        if (parser.getName().equals("tag")){
+        if (parser.getName().equals("tag")) {
             readTags(relation);
         } else if (parser.getName().equals("member")) {
             readMembers(relation);
